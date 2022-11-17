@@ -27,6 +27,7 @@
   <p>Password: {{ password }}</p>
   <p>Your are a: {{ role }}</p>
   <p>Accepted Terms and Conditions: {{ terms }}</p>
+  <div>{{ correctTime }}</div>
 </template>
 
 <script>
@@ -40,7 +41,8 @@ export default {
             terms: false,
             tempSkill: '',
             skills: [],
-            passwordError: ''
+            passwordError: '',
+            currentTime: new Date
         }
     },
     methods: {
@@ -66,6 +68,11 @@ export default {
                 console.log('skills', this.skills)
                 console.log('terms accepted', this.terms)
             }
+        }
+    },
+    computed: {
+        correctTime () {
+            return this.currentTime.toLocaleTimeString()
         }
     }
 }
