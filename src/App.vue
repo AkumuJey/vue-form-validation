@@ -1,14 +1,16 @@
 <template>
   <SignUp />
+  <Clock />
 </template>
 
 <script>
 
 import SignUp from './components/SignUp.vue'
+import Clock from './components/Clock.vue'
 export default {
   name: 'App',
   components: {
-    SignUp
+    SignUp, Clock
   }
 }
 </script>

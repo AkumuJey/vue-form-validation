@@ -27,7 +27,9 @@
   <p>Password: {{ password }}</p>
   <p>Your are a: {{ role }}</p>
   <p>Accepted Terms and Conditions: {{ terms }}</p>
-  <div>{{ correctTime }}</div>
+  <div class="blue" v-if="now">
+    {{ now }}
+    </div>
 </template>
 
 <script>
@@ -42,8 +44,14 @@ export default {
             tempSkill: '',
             skills: [],
             passwordError: '',
-            currentTime: new Date
+            now: null
         }
+    },
+    beforeMount() {
+        this.correctTime()
+    },
+    mounted() {
+        setInterval(() => this.correctTime(), 1000)
     },
     methods: {
         addSkill(e) {
@@ -68,11 +76,11 @@ export default {
                 console.log('skills', this.skills)
                 console.log('terms accepted', this.terms)
             }
-        }
-    },
-    computed: {
-        correctTime () {
-            return this.currentTime.toLocaleTimeString()
+        },
+        correctTime() {
+            const date = new Date()
+            let now = date.toLocaleTimeString()
+            this.now = now
         }
     }
 }
@@ -140,5 +148,15 @@ button{
     margin-top: 10px;
     font-size: 0.8em;
     font-weight: bold;
+}
+.blue {
+    width: 40%;
+    background-color: lightblue;
+    color: blue;
+    border-radius: 20px;
+    margin: 10px auto;
+    height: auto;
+    padding: 10px;
+    font-size: 2.5em;
 }
 </style>
